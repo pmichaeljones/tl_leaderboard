@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       flash[:alert] = "saved"
       render :index
     else
+      binding.pry
       flash[:alert] = "not saved"
       render :index
     end
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    require(:user).permit(:name, :github_username)
+    params.require(:user).permit(:name, :github_username, :github_username_confirmation)
   end
 
 end
