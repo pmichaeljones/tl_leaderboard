@@ -53,7 +53,7 @@
         %tbody
           -@users.each do |user|
             %tr
-              %td user.name
-              %td=link_to "{user.github_username}", "https://github.com/#{user.github_username}"
-              %td user.contributions + "Commits"
-              %td user.streak + "Days"
+              %td #{user.name}
+              %td=link_to "#{user.github_username}", "https://github.com/#{user.github_username}"
+              %td #{user.contributions} Commits
+              %td #{user.streak} Days
