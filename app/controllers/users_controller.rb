@@ -7,17 +7,22 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    username = params[:user][:github_username]
 
-    if @user.save
-      flash[:alert] = "saved"
-      render :index
+    if github_user_exists?(username) == false
+      flash[:error] = "Username doesn't exist"
+      redirect_to :index
     else
-      binding.pry
-      flash[:alert] = "not saved"
-      render :index
+      @user = User.create(user_params)
+      if @user.save
+        flash[:alert] = "You're On the Leaderboard!"
+        render :index
+      else
+        binding.pry
+        flash[:alert] = "Try Again!"
+        render :index
+      end
     end
-
   end
 
 

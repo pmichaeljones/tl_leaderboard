@@ -19,6 +19,12 @@ describe UsersController do
     it 'sets flash on successful save'
 
     it 'sets flash on unsuccessful save'
+
+    it 'sets username doesnt exist flash' do
+      post :create, name: "Patrick", github_username: "pmichaeljonesxyz", github_username_confirmation: "pmichaeljonesxyz"
+      expect(Flash[:alert]).to eq("Username doesn't exist")
+    end
+
   end
 
 
