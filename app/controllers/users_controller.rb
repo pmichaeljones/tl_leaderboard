@@ -3,38 +3,47 @@ class UsersController < ApplicationController
   require 'net/http'
 
   def index
-    @users = User.all
+    sort_users
   end
 
   def update_users
     User.update
-    @users = User.all
+    sort_users
     render :index
   end
 
 
   def create
-    username = params[:user][:github_username]
-
-    if github_user_exists?(username) == false
-      flash[:error] = "Username doesn't exist"
-      redirect_to :index
+    @user = User.create(user_params)
+    if @user.save
+      check_user_name(@user.github_username)
+      flash[:info] = "You're On the Leaderboard!"
+      User.update
+      sort_users
+      render :index
     else
-      @user = User.create(user_params)
-      if @user.save
-        flash[:alert] = "You're On the Leaderboard!"
-      else
-        flash[:alert] = "Try Again!"
-      end
+      flash[:alert] = "Username's must match!"
+      redirect_to root_path
     end
-    #update the data of all current users
-    User.update
-    @users = User.all
-    render :index
+
   end
 
 
   private
+
+  def sort_users
+    @users = User.order(contributions: :desc)
+  end
+
+  def check_user_name(username)
+    if github_user_exists?(username) == false
+      flash[:error] = "That GitHub user doesn't exist."
+      bad_user = User.find_by(username: username)
+      bad_user.delete
+      redirect_to index_path
+    end
+  end
+
 
   def github_user_exists?(username)
     uri = URI("https://github.com/#{username}/")
