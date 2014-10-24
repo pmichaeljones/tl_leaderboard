@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   validates_presence_of :name
+  validates_uniqueness_of :github_username
   validates :github_username, confirmation: true
   validates :github_username_confirmation, presence: true
 

@@ -16,12 +16,11 @@ class UsersController < ApplicationController
       @user = User.create(user_params)
       if @user.save
         flash[:alert] = "You're On the Leaderboard!"
-        render :index
       else
-        binding.pry
         flash[:alert] = "Try Again!"
-        render :index
       end
+    @user = User.all
+    render :index
     end
   end
 

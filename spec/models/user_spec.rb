@@ -5,6 +5,7 @@ describe User do
   it { should validate_presence_of :name }
   it { should validate_presence_of :github_username }
   it { should validate_presence_of :github_username_confirmation }
+  it { should validate_uniqueness_of :github_username }
 
   describe "#get_contributions" do
 
