@@ -1,0 +1,61 @@
+.section
+  .row
+    .small-12.columns
+      %p
+        Becoming a programmer takes a small bit of intelligence and a LOT of persistence. Writing code every single day
+        keeps your brain focused and helps you grasp difficult concepts.
+      %p
+        Long form programming is the most beneficial. Having one 2-hour programming session is infinitely better than 4 30-minute sessions. Much like a Heroku dyno, it takes your brain time "spin up" and "load the code". It might take 15 minutes to get the zone, and by that time, if you're doing a 30-minute session, you only have 15 minutes remaining. If you're doing a 2-hour session, you still have 1:45 of great productivity ahead of you.
+      %p
+        In order to encourage consistent coding, I've build a leaderboard for TeaLeaf Academy. Input your name and
+        GitHub username and you'll be added to the leaderboard below. The more you commit, the higher up the leaderboard you'll get!
+      %p
+        The leaderboard was built using
+        =link_to "Foundation Zurb", "http://foundation.zurb.com/"
+        a scraper gem called Nokogiri. It's the same gem that powers Capybara's functional testing. If you're curious about the code, take a look here:
+        =link_to "Tealeaf Leaderboard GitHub", "https://github.com/pmichaeljones/leaderboard/"
+  %hr
+    .row
+    .small-12.columns.centered
+      %p
+        This site was built using TDD best-practices by TeaLeaf Academy student
+        =link_to "Patrick Jones", "http://pmichaeljones.herokuapp.com"
+  %hr
+  .row
+    .small-12.columns
+      %form{"data-abide" => true}
+        %fieldset
+          %legend Leaderboard Submission Form
+          .row
+            .small-12.large-4.column
+              %label
+                Name
+                %input(type="text" placeholder="Your Name" class='radius' required=true)
+                %small.error Put your name please!
+            .small-12.large-4.column
+              %label
+                GitHub Username
+                %input(type="text" id="ghusername" placeholder="GitHub Username" class='radius' required=true)
+            .small-12.large-4.column
+              %label
+                GitHub Username Confirmation
+                %input(type="text" placeholder="GitHub Username" class='radius' required=true data-equalto="ghusername")
+                %small.error Usernames must match
+          .small-12.column.centered
+            = submit_tag "Join the Leaderboard!", class: 'button login-button'
+            = submit_tag "Refresh Leaderboard!", class: 'button login-button light-blue'
+  .row
+    .small-12.columns
+      %table
+        %thead
+          %tr
+            %th Name
+            %th GitHub Username
+            %th Yearly Contributions
+            %th Current Streak
+        %tbody
+          %tr
+            %td Patrick Jones
+            %td pmichaeljones
+            %td 744 Total
+            %td 20 Days

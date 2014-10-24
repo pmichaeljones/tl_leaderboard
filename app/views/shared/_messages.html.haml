@@ -1,0 +1,6 @@
+.div.centered
+  - flash.each do |name, msg|
+    %div(data-alert=true class="alert-box #{name} radius")
+      %a.close(href="#")
+        &times;
+      = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)

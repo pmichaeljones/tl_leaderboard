@@ -1,0 +1,348 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ //= require foundation_and_overrides
+
+ *= require foundation_and_overrides
+
+ */
+@import 'foundation-icons';
+
+/* USER DASHBOARD STYLING */
+
+.top-bar .title-area {
+  float: none;
+}
+
+.dashboard {
+  padding: 0px 5px;
+  background: #f8f8f8;
+  border-top: 2px solid #3399ff;
+  border-bottom: 2px solid #3399ff;
+  height: 250px;
+}
+
+.dashboard-end {
+  margin-right: -10px;
+}
+
+.dashboard-title {
+  font-size: 36px;
+  font-color: black;
+  text-align: center;
+}
+
+.dashboard-box-title {
+  font-size: 20px;
+  font-color: black;
+  text-align: center;
+  font-weight: 700;
+  border-bottom: 3px solid black;
+}
+
+.white-space {
+  background: white;
+}
+
+.centered {
+  text-align: center;
+}
+
+.dashboard-button:hover {
+  opacity: 1;
+}
+
+.dashboard-green {
+  border-radius: 3px;
+  opacity: .75;
+  background: #9abc32;
+  padding: 2px 0px 5px 0px;
+}
+
+.dashboard-orange {
+  border-radius: 3px;
+  opacity: .75;
+  background: #ffb752;
+  padding: 2px 0px 5px 0px;
+}
+
+.dashboard-purple {
+  border-radius: 3px;
+  opacity: .75;
+  background: #cb6fd7;
+  padding: 2px 0px 5px 0px;
+}
+
+.dashboard-blue {
+  border-radius: 3px;
+  opacity: .75;
+  background: #6fb3e0;
+  padding: 2px 0px 5px 0px;
+}
+
+.dashboard-yellow {
+  border-radius: 3px;
+  opacity: .75;
+  background: #FEE074;
+  padding: 2px 0px 5px 0px;
+}
+
+.dashboard-icon ~ p {
+  color: black;
+  margin-bottom: 5px;
+}
+
+
+.business-info {
+}
+
+.dashboard-icon {
+  color: black;
+  font-size: 36px;
+}
+/* END OF DASHBOARD STYLING */
+
+.login-links {
+  margin-top: 15px;
+}
+.login-holder {
+  margin-top: 27px;
+}
+
+.login-button {
+  color: white;
+  padding: 10px 20px;
+  background: orange;
+  letter-spacing: 2px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px !important;
+}
+
+/* START FEATURE REQUEST STYLING */
+
+.feature-box {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.red-icon {
+  color: #ff0000;
+  font-size: 24px;
+}
+
+.green-icon {
+  color: #7FFF00;
+  font-size: 24px;
+}
+
+/* END OF FEATURE REQUEST STYLING */
+
+.footer-terms > a {
+  color: #fff;
+}
+
+.footer-terms > a:hover {
+  color: #3399ff;
+}
+
+.footer-icon {
+  color: white;
+  font-size: 48px;
+  opacity: .75;
+  padding: 15px;
+}
+
+.footer-icon:hover {
+  opacity: 1;
+}
+
+.large-icon {
+  font-size: 72px;
+}
+
+.homepage-size {
+  font-size: 72px;
+  color: white;
+}
+
+.homepage-size:hover + p {
+  opacity: .9;
+}
+
+.homepage-size:hover {
+  opacity: .8;
+}
+
+li p {
+  color: white;
+}
+
+.medium-icon {
+  font-size: 36px;
+}
+
+.small-icon {
+  font-size: 18px;
+}
+
+.light-grey {
+  background: #f2f2f2;
+}
+
+.light-red {
+  background: red;
+}
+.steel-blue {
+  background: steelblue;
+}
+
+.icon-bar.four-up .item {
+  background-color: #333;
+}
+
+.icon-bar.four-up .item:hover {
+  background-color: #00BFFF;
+}
+
+.white-border-top {
+  border-top: 3px solid lightgrey;
+}
+
+.bottom-border {
+  border-bottom: 2px white solid;
+}
+
+.logout-zone {
+  text-align: center;
+}
+
+.button.tiny.mobile-transparent {
+  margin-top: 10px;
+  margin-bottom: 9px;
+  margin-left: -15px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 3px 5px;
+}
+
+.button.tiny.mobile-transparent:hover {
+  background: #00BFFF;
+}
+
+.homepage-row {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.homepage-image {
+  opacity: .75;
+  border-radius: 50%;
+  width: 75%;
+}
+
+.homepage-image:hover {
+  opacity: 1;
+}
+
+.homepage-footer {
+  padding-top: 10px;
+  padding-bottom: 25px;
+  background-color: #000;
+}
+
+.footer-logo {
+  color: white;
+  padding-left: 20px;
+  margin-bottom: -5px;
+}
+
+.secondary-header {
+  color: white;
+}
+
+.homepage-element {
+  position: absolute;
+}
+
+meh {
+    background-image: url('/tmp/bulldog-from-gratisography-50.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#home-list {
+  border-bottom: 2px solid white;
+}
+
+#homepage-p-list {
+  border-bottom: 2px solid black;
+}
+
+#homepage-blurb {
+  font-weight: bold;
+}
+
+.pricing-table .title {
+  background: black;
+}
+
+#table-button {
+  background: black;
+  margin-top: 10px;
+}
+
+.logo-first-word {
+  font: 700 33px raleway;
+  color: white;
+  margin-left: -10px;
+}
+
+.logo-last-word {
+  font: 200 33px raleway;
+  color: white;
+  margin-left: -8px;
+}
+
+body {
+  font-family: raleway;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  background: #00BFFF;
+}
+
+.top-bar-section .dropdown li:not(.has-form):not(.active) > a:not(.button):hover {
+  background: #00BFFF;
+}
+
+.top-bar-section ul li > a.button:hover, .top-bar-section ul li > a.button:focus {
+  background: #00BFFF;
+}
+
+.logo-icon {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+table {
+  width: 100%;
+}
+
+.light-blue {
+  background-color: #5F9EA0;
+}
