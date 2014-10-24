@@ -39,8 +39,8 @@
               = f.text_field :github_username_confirmation, placeholder: 'GitHub Username Again'
               %small.error Usernames must match
           .small-12.column.centered
-            = submit_tag "Join the Leaderboard!", class: 'button login-button'
-            /= submit_tag "Refresh Leaderboard!", class: 'button login-button light-blue'
+            = f.submit "Join the Leaderboard!", class: 'button login-button'
+            = link_to "Refresh Leaderboard!", update_users_path, class: 'button login-button light-blue'
   .row
     .small-12.columns
       %table

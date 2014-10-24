@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create]
 
+  get 'update_users', to: 'users#update_users'
+
 end
 
 

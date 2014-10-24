@@ -6,6 +6,13 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def update_users
+    User.update
+    @users = User.all
+    render :index
+  end
+
+
   def create
     username = params[:user][:github_username]
 
