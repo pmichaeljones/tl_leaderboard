@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'ui#index'
+  root 'users#index'
 
-  get 'ui(/:action)', controller: 'ui'
+  resources :users, only: [:create]
 
 end
 

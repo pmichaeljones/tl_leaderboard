@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base
 
   validates_presence_of :name
-  validates_presence_of :github_username
-  #validates_presence_of :contributions
-  #validates_presence_of :streak
-
+  validates :github_username, confirmation: true
+  validates :github_username_confirmation, presence: true
 
   require 'net/http'
   require 'JSON'
