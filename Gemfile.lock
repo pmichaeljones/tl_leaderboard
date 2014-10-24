@@ -198,6 +198,7 @@ DEPENDENCIES
   haml-rails
   jbuilder
   jquery-rails
+  nokogiri
   pg
   pry (= 0.9.10)
   pry-nav

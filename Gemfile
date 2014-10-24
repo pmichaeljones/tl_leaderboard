@@ -16,6 +16,7 @@ gem 'foundation-icons-sass-rails'
 gem 'autoprefixer-rails'
 gem 'turbolinks'
 gem 'jbuilder'
+gem 'nokogiri'
 
 group :development do
   gem 'thin'
