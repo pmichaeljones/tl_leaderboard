@@ -14,8 +14,11 @@ describe UsersController do
     end
 
 
-
     it 'sets the @users variable'
+
+    it 'sets flash on successful save'
+
+    it 'sets flash on unsuccessful save'
   end
 
 

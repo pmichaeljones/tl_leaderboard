@@ -7,9 +7,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
+    @user = User.create(user_params)
 
-    render :index
+    if @user.save
+      flash[:alert] = "saved"
+      render :index
+    else
+      flash[:alert] = "not saved"
+      render :index
+    end
+
   end
 
 
