@@ -23,6 +23,15 @@ class User < ActiveRecord::Base
     return streak
   end
 
+  def self.update
+    users = User.all
+    users.each do |user|
+      user.get_contributions
+      user.get_streak
+    end
+  end
+
+
   # def update_list(user_list)
 
   #   user_list.each do |user|

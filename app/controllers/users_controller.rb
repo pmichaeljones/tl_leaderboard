@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   require 'net/http'
 
   def index
-
+    @users = User.all
   end
 
   def create
@@ -19,9 +19,11 @@ class UsersController < ApplicationController
       else
         flash[:alert] = "Try Again!"
       end
-    @user = User.all
-    render :index
     end
+    #update the data of all current users
+    User.update
+    @users = User.all
+    render :index
   end
 
 

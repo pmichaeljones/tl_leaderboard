@@ -51,8 +51,9 @@
             %th Yearly Contributions
             %th Current Streak
         %tbody
-          %tr
-            %td Patrick Jones
-            %td pmichaeljones
-            %td 744 Total
-            %td 20 Days
+          -@users.each do |user|
+            %tr
+              %td user.name
+              %td=link_to "{user.github_username}", "https://github.com/#{user.github_username}"
+              %td user.contributions + "Commits"
+              %td user.streak + "Days"
