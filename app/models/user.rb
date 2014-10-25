@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   validates :github_username_confirmation, presence: true
 
   require 'net/http'
-  require 'JSON'
   require 'open-uri'
 
   def get_contributions
