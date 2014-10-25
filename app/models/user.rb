@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 
   def get_contributions
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
+    binding.pry
     contributions = doc.css("span.contrib-number")[0].text.remove!(" total")
+    contributions.remove!(",")
     update_column(:contributions, contributions.to_i)
     #return contributions
   end

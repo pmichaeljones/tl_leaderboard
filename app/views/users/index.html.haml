@@ -21,6 +21,7 @@
         This site was built using TDD best-practices by TeaLeaf Academy student
         =link_to "Patrick Jones", "http://pmichaeljones.herokuapp.com"
   %hr
+  = render 'shared/messages'
   .row
     .small-12.columns
       =form_for(User.new, data: {abide:''}) do |f|

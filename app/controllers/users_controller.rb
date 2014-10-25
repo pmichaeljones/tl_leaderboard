@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def update_users
     User.update
     sort_users
+    flash[:info] = "Leaderboard Updated!"
     render :index
   end
 
