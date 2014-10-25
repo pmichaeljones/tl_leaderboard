@@ -14,13 +14,18 @@ class UsersController < ApplicationController
 
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
     if @user.save
-      check_user_name(@user.github_username)
-      flash[:info] = "You're On the Leaderboard!"
-      User.update
-      sort_users
-      render :index
+      if check_user_name(@user.github_username) == false
+        @user.delete
+        flash[:alert] = "That GitHub user doesn't exist!"
+        redirect_to root_path
+      else
+        flash[:info] = "You're On the Leaderboard!"
+        User.update
+        sort_users
+        render :index
+      end
     else
       flash[:alert] = "Username's must match!"
       redirect_to root_path
@@ -37,10 +42,9 @@ class UsersController < ApplicationController
 
   def check_user_name(username)
     if github_user_exists?(username) == false
-      flash[:error] = "That GitHub user doesn't exist."
-      bad_user = User.find_by(username: username)
-      bad_user.delete
-      redirect_to index_path
+      return false
+    else
+      return true
     end
   end
 

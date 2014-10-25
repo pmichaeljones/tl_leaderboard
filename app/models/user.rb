@@ -13,14 +13,14 @@ class User < ActiveRecord::Base
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
     contributions = doc.css("span.contrib-number")[0].text.remove!(" total")
     update_column(:contributions, contributions.to_i)
-    return contributions
+    #return contributions
   end
 
   def get_streak
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
     streak = doc.css("span.contrib-number")[2].text.remove!(" days")
     update_column(:streak, streak.to_i)
-    return streak
+    #return streak
   end
 
   def self.update
