@@ -15,6 +15,10 @@ class UsersController < ApplicationController
 
 
   def create
+    @user = User.new(user_params)
+    @user.save
+    render :index
+    flash[:error] = "Must include name, GitHub username and email address."
   end
 
 

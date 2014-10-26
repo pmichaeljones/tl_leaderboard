@@ -46,18 +46,40 @@ describe UsersController do
 
       it 'does not create a new user' do
         post :create, user: {name: "Patrick"}
-        expect(User.all).to eq(1)
+        expect(User.all.count).to eq(0)
       end
 
-      it 'sets flash on unsuccessful save'
+      it 'sets flash on unsuccessful save' do
+        post :create, user: {name: "Patrick"}
+        expect(flash).to be_present
+      end
 
     end #end invalid inputs context
 
+    context 'with valid inputs and valid github username' do
+
+      before do
+        post :create, user: Fabricate.attributes_for(:user)
+      end
+
+      it 'saves user' do
+        expect(User.all.count). to eq(1)
+      end
+
+      it 'sets the @users variable' do
+        expect(assigns(:users).count).to eq(2)
+      end
+
+      it 'sets flash on successful save'
+
+      it 'sets the flash success message'
+
+    end #end valid inputs and valid github username
+
     context 'with valid inputs but invalid github username' do
 
-      it 'doesnt create a user if github user does not exist'# do
+      # it 'doesnt create a user if github user does not exist' do
       #   patrick = Fabricate(:user, github_username: 'xdfdfasdfdfsdf')
-      #   binding.pry
       #   post :create, user: patrick
       #   expect(User.all.count).to eq(0)
       # end
@@ -67,18 +89,6 @@ describe UsersController do
         it 'redirects to index action'
 
     end #end valid inputs but invalid github username
-
-    context 'with valid inputs and valid github username' do
-
-      it 'create a user if a github user exits'
-
-      it 'sets the @users variable'
-
-      it 'sets flash on successful save'
-
-      it 'sets the flash success message'
-
-    end #end valid inputs and valid github username
 
   end
 
