@@ -29,13 +29,18 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  def self.update
-    users = User.all
-    users.each do |user|
-      user.get_contributions
-      user.get_streak
-    end
+  def update_user_info
+    self.contributions = github_contributions
+    self.streak = github_streak
   end
+
+
+  # def self.update
+  #   users = User.all
+  #   users.each do |user|
+  #     user.get_contributions
+  #     user.get_streak
+  #   end
+  # end
 
 end

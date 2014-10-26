@@ -26,6 +26,23 @@ describe User do
 
   end
 
+  describe '#update_user_info' do
+
+    it 'should fetch user contributions' do
+      user = Fabricate(:user, github_username:"pmichaeljones")
+      user.update_user_info
+      expect(user.contributions).not_to eq(0)
+    end
+
+
+    it 'should fetch user streak' do
+      user = Fabricate(:user, github_username:"pmichaeljones")
+      user.update_user_info
+      expect(user.streak).not_to eq(0)
+    end
+
+  end
+
   describe '#github_user?' do
 
     it 'returns false if got a true github user' do
