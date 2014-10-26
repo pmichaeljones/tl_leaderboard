@@ -2,47 +2,56 @@ require 'spec_helper'
 
 describe UsersController do
 
+  decribe 'GET index' do
+
+    it 'sets the @users variable'
+
+    it 'renders the index template'
+
+  end
+
+  describe 'GET update_users' do
+
+    it 'sets the @users variable'
+
+    it 'renders the index template'
+
+  end
+
+
   describe "POST create" do
 
     context 'within invalid inputs' do
 
-      it 'doesnt create a user if net/http returns a 404' do
-        patrick = Fabricate(:user, github_username: 'xdfdfasdfdfsdf')
-        binding.pry
-        post :create, user: patrick
-        expect(User.all.count).to eq(0)
-      end
+      it 'doe not create a new user'
 
-      it 'sets flash on unsuccessful save' do
+      it 'redirects to the index action'
 
-      end
+      it 'sets flash on unsuccessful save'
 
-    end
+    end #end invalid inputs context
 
-    context 'with valid inputs' do
+    context 'with valid inputs but invalid github username' do
 
-      it 'create a user if a github user exits' do
+        it 'doesnt create a user if github user does not exist'
 
-        post :create, name: "Patrick", github_username: "pmichaeljones", email: 'pj@example.com'
-        expect(User.all.count).to eq(1)
-      end
+        it 'sets username doesnt exist flash message'
 
+        it 'redirects to index action'
 
-      it 'sets the @users variable' do
+    end #end valid inputs but invalid github username
 
-      end
+    context 'with valid inputs and valid github username' do
 
+      it 'create a user if a github user exits'
 
-      it 'sets flash on successful save' do
+      it 'sets the @users variable'
 
-      end
+      it 'sets flash on successful save'
 
-       it 'sets username doesnt exist flash' do
-        post :create, name: "Patrick", github_username: "pmichaeljonesxyz", github_username_confirmation: "pmichaeljonesxyz"
-        expect(Flash[:alert]).to eq("Username doesn't exist")
-      end
+      it 'sets the flash success message'
 
-    end
+    end #end valid inputs and valid github username
 
   end
 

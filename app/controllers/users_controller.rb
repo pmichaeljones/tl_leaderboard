@@ -38,6 +38,8 @@ class UsersController < ApplicationController
 
   private
 
+
+
   def sort_users
     @users = User.order(contributions: :desc)
   end
