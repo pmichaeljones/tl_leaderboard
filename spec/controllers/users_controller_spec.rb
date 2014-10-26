@@ -7,7 +7,9 @@ describe UsersController do
     context 'within invalid inputs' do
 
       it 'doesnt create a user if net/http returns a 404' do
-        post :create, name: "Patrick", github_username: "adfasdfdfaasdf"
+        patrick = Fabricate(:user, github_username: 'xdfdfasdfdfsdf')
+        binding.pry
+        post :create, user: patrick
         expect(User.all.count).to eq(0)
       end
 
@@ -20,7 +22,8 @@ describe UsersController do
     context 'with valid inputs' do
 
       it 'create a user if a github user exits' do
-        post :create, user: { name: "Patrick", github_username: "pmichaeljones" }
+
+        post :create, name: "Patrick", github_username: "pmichaeljones", email: 'pj@example.com'
         expect(User.all.count).to eq(1)
       end
 

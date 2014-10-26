@@ -1,25 +1,34 @@
 class User < ActiveRecord::Base
 
-  validates_presence_of :name
+  validates_presence_of :name, :email, :github_username
   validates_uniqueness_of :github_username
-  validates :github_username, confirmation: true
-  validates :github_username_confirmation, presence: true
 
   require 'net/http'
   require 'open-uri'
 
-  def get_contributions
+  def github_contributions
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
     contributions = doc.css("span.contrib-number")[0].text.remove!(" total")
     contributions.remove!(",")
-    update_column(:contributions, contributions.to_i)
+    contributions.to_i
   end
 
-  def get_streak
+  def github_streak
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
     streak = doc.css("span.contrib-number")[2].text.remove!(" days")
-    update_column(:streak, streak.to_i)
+    streak.to_i
   end
+
+  def github_user?
+    uri = URI("https://github.com/#{self.github_username}/")
+    response = Net::HTTP.get_response(uri)
+    if response.code == '404'
+      return false
+    else
+      return true
+    end
+  end
+
 
   def self.update
     users = User.all
