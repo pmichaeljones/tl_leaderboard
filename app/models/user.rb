@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   def update_user_info
     self.contributions = github_contributions
     self.streak = github_streak
+    self.save
   end
 
   def self.update

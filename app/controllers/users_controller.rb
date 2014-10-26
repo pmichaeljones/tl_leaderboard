@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     if @user.github_user?
       if @user.save
         @user.update_user_info
+        #binding.pry
         flash[:success] = "You've been added to the leaderboard!"
         redirect_to root_path
       else
