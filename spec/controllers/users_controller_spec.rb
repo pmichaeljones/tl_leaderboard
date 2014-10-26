@@ -4,7 +4,13 @@ describe UsersController do
 
   describe 'GET index' do
 
-    it 'sets the @users variable'
+    it 'sets the @users variable' do
+      patrick = Fabricate(:user)
+      mike = Fabricate(:user)
+      get :index
+      expect(assigns(:users)).to include(mike, patrick)
+    end
+
 
     it 'renders the index template'
 

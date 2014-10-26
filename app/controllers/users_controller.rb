@@ -15,24 +15,6 @@ class UsersController < ApplicationController
 
 
   def create
-    #binding.pry
-    @user = User.new(user_params)
-    if @user.save
-      if check_user_name(@user.github_username) == false
-        @user.delete
-        flash[:alert] = "That GitHub user doesn't exist!"
-        redirect_to root_path
-      else
-        flash[:info] = "You're On the Leaderboard!"
-        User.update
-        sort_users
-        render :index
-      end
-    else
-      flash[:alert] = "Username's must match!"
-      redirect_to root_path
-    end
-
   end
 
 
