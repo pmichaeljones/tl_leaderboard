@@ -28,16 +28,19 @@
         %fieldset
           %legend Leaderboard Submission Form
           .row
-            .small-12.large-4.column
+            .small-12.large-3.column
               = f.label :name, "Your Name"
               = f.text_field :name, placeholder: 'Your Name'
               %small.error Put your name please!
-            .small-12.large-4.column
+            .small-12.large-3.column
               = f.label :github_username, "GitHub Username"
-              = f.text_field :github_username, placeholder: 'Your GitHub Username'
-            .small-12.large-4.column
-              = f.label :github_username_confirmation, "GitHub Username Confirmation"
-              = f.text_field :github_username_confirmation, placeholder: 'GitHub Username Again'
+              = f.text_field :github_username, placeholder: 'Your GitHub Username', class: 'radius'
+            .small-12.large-3.column
+              = f.label :email, "Email Address"
+              = f.text_field :email, placeholder: 'Email Address', class: 'radius'
+            .small-12.large-3.column
+              %label(value="Email Confirmation", class: 'radius')
+              %input(type="text")
               %small.error Usernames must match
           .small-12.column.centered
             = f.submit "Join the Leaderboard!", class: 'button login-button'
