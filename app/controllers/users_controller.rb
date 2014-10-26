@@ -15,16 +15,27 @@ class UsersController < ApplicationController
 
 
   def create
+    #binding.pry
     @user = User.new(user_params)
-    @user.save
-    render :index
-    flash[:error] = "Must include name, GitHub username and email address."
+    @users = User.all
+
+    if @user.github_user?
+      if @user.save
+        @user.update_user_info
+        flash[:success] = "You've been added to the leaderboard!"
+        redirect_to root_path
+      else
+        flash[:error] = "Must include name, GitHub username and email address."
+        render :index
+      end
+    else
+      flash[:error] = "That GitHub user doesn't exist"
+      render :index
+    end
   end
 
 
   private
-
-
 
   def sort_users
     @users = User.order(contributions: :desc)
