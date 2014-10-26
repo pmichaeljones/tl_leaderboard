@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :github_username
 
   require 'net/http'
-  require 'open-uri'
 
   def github_contributions
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
@@ -34,13 +33,11 @@ class User < ActiveRecord::Base
     self.streak = github_streak
   end
 
-
-  # def self.update
-  #   users = User.all
-  #   users.each do |user|
-  #     user.get_contributions
-  #     user.get_streak
-  #   end
-  # end
+  def self.update
+    users = User.all
+    users.each do |user|
+      user.update_user_info
+    end
+  end
 
 end

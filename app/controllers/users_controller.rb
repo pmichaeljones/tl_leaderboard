@@ -42,27 +42,8 @@ class UsersController < ApplicationController
     @users = User.order(contributions: :desc)
   end
 
-  def check_user_name(username)
-    if github_user_exists?(username) == false
-      return false
-    else
-      return true
-    end
-  end
-
-
-  def github_user_exists?(username)
-    uri = URI("https://github.com/#{username}/")
-    response = Net::HTTP.get_response(uri)
-    if response.code == '404'
-      return false
-    else
-      return true
-    end
-  end
-
   def user_params
-    params.require(:user).permit(:name, :github_username, :github_username_confirmation)
+    params.require(:user).permit(:name, :github_username, :email)
   end
 
 end
