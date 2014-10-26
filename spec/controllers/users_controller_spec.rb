@@ -11,8 +11,13 @@ describe UsersController do
       expect(assigns(:users)).to include(mike, patrick)
     end
 
+    it 'renders the index template' do
+      patrick = Fabricate(:user)
+      mike = Fabricate(:user)
+      get :index
+      expect(response).to render_template :index
+    end
 
-    it 'renders the index template'
 
   end
 
