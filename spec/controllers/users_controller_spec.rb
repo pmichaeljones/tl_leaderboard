@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UsersController do
 
-  decribe 'GET index' do
+  describe 'GET index' do
 
     it 'sets the @users variable'
 
@@ -21,7 +21,7 @@ describe UsersController do
 
   describe "POST create" do
 
-    context 'within invalid inputs' do
+    context 'with invalid inputs' do
 
       it 'doe not create a new user'
 
@@ -33,7 +33,12 @@ describe UsersController do
 
     context 'with valid inputs but invalid github username' do
 
-        it 'doesnt create a user if github user does not exist'
+      it 'doesnt create a user if github user does not exist'# do
+      #   patrick = Fabricate(:user, github_username: 'xdfdfasdfdfsdf')
+      #   binding.pry
+      #   post :create, user: patrick
+      #   expect(User.all.count).to eq(0)
+      # end
 
         it 'sets username doesnt exist flash message'
 

@@ -41,10 +41,3 @@ class User < ActiveRecord::Base
   end
 
 end
-
- do
-        patrick = Fabricate(:user, github_username: 'xdfdfasdfdfsdf')
-        binding.pry
-        post :create, user: patrick
-        expect(User.all.count).to eq(0)
-      end
