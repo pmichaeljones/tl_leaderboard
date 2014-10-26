@@ -2,30 +2,35 @@ require 'spec_helper'
 
 describe UsersController do
 
-  describe 'GET index' do
+  let(:patrick) { Fabricate(:user) }
+  let(:mike) { Fabricate(:user) }
+
+  describe 'GET update_users' do
 
     it 'sets the @users variable' do
-      patrick = Fabricate(:user)
-      mike = Fabricate(:user)
       get :index
       expect(assigns(:users)).to include(mike, patrick)
     end
 
     it 'renders the index template' do
-      patrick = Fabricate(:user)
-      mike = Fabricate(:user)
       get :index
       expect(response).to render_template :index
     end
 
-
   end
 
-  describe 'GET update_users' do
+  describe 'GET index' do
 
-    it 'sets the @users variable'
+    it 'sets the @users variable' do
+      get :index
+      expect(assigns(:users)).to include(mike, patrick)
+    end
 
-    it 'renders the index template'
+
+    it 'renders the index template' do
+      get :index
+      expect(response).to render_template :index
+    end
 
   end
 
@@ -34,9 +39,15 @@ describe UsersController do
 
     context 'with invalid inputs' do
 
-      it 'doe not create a new user'
+      it 'renders the index template' do
+        post :create, user: { name: "Patrick" }
+        expect(response).to render_template :index
+      end
 
-      it 'redirects to the index action'
+      it 'does not create a new user' do
+        post :create, user: {name: "Patrick"}
+        expect(User.all).to eq(1)
+      end
 
       it 'sets flash on unsuccessful save'
 
