@@ -30,18 +30,20 @@
           .row
             .small-12.large-3.column
               = f.label :name, "Your Name"
-              = f.text_field :name, placeholder: 'Your Name'
-              %small.error Put your name please!
+              = f.text_field :name, placeholder: 'Your Name', required: ''
+              %small.error Please enter name
             .small-12.large-3.column
               = f.label :github_username, "GitHub Username"
-              = f.text_field :github_username, placeholder: 'Your GitHub Username', class: 'radius'
+              = f.text_field :github_username, placeholder: 'Your GitHub Username', class: 'radius', required: ''
+              %small.error Enter username please!
             .small-12.large-3.column
               = f.label :email, "Email Address"
-              = f.text_field :email, placeholder: 'Email Address', class: 'radius'
+              = f.text_field :email, placeholder: 'Email Address', class: 'radius', id: "email", type: 'email', required: ''
+              %small.error Must be valid email
             .small-12.large-3.column
-              %label(value="Email Confirmation", class: 'radius')
-              %input(type="text")
-              %small.error Usernames must match
+              %label Email Confirmation
+              %input(type="email" placeholder="Email confirmation" class='radius' data-equalto="email" required=true)
+              %small.error Emails don't match
           .small-12.column.centered
             = f.submit "Join the Leaderboard!", class: 'button login-button'
             = link_to "Refresh Leaderboard!", update_users_path, class: 'button login-button light-blue'
