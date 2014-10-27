@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         @user.update_user_info
         AppMailer.send_secret_token(@user.id).deliver
         #binding.pry
-        flash[:success] = "You've been added to the leaderboard!"
+        flash[:success] = "Success! Your secret token is: #{@user.secret}"
         redirect_to root_path
       else
         flash[:error] = "Must include name, GitHub username and email address."
