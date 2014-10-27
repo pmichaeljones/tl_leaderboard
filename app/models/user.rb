@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   def github_streak
     doc = Nokogiri::HTML(open("https://github.com/#{self.github_username}"))
-    streak = doc.css("span.contrib-number")[2].text.remove!(" days")
+    streak = doc.css("span.contrib-number")[1].text.remove!(" days")
     streak.to_i
   end
 
