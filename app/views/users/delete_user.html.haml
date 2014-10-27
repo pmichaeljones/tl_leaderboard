@@ -6,9 +6,9 @@
           %legend Leaderboard Erase Form
           .row.centered
             .small-12.large-6.columns
-              =label_tag "Please Enter User Secret Token for user: #{@user.name}"
+              =label_tag "Please Enter User Secret Token for: #{@user.github_username}"
               =text_field_tag :secret_token, nil, class: 'radius'
-              =hidden_field_tag :user_id, "{@user.id}"
+              =hidden_field_tag :user_id, "#{@user.id}"
             .small-12.large-6.columns
               =submit_tag "Erase User from Leaderboard", class: 'button login-button down-a-bit'
 

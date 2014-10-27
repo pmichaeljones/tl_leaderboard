@@ -9,7 +9,7 @@ describe UsersController do
 
     it 'sets @user variable' do
       user = Fabricate(:user)
-      get :delete_user, id: user.id
+      post :delete_user, user_id: user.id
       expect(assigns(:user)).to eq(user)
     end
 
@@ -21,10 +21,37 @@ describe UsersController do
 
   end
 
-
   describe 'POST destroy_user' do
 
-    it 'should should erase the user if input secret matches user secret'
+    context 'with valid user and correct token' do
+
+      it 'should should erase the user if input secret matches user secret' do
+        user = Fabricate(:user)
+        user.secret = "aabbcc"
+        user.save
+        binding.pry
+        post :create, user_id: user.id, secret_token: "aabbcc"
+        expect(User.all.count).to eq(0)
+      end
+
+
+      it 'sets a flash[:success] message' do
+        user = Fabricate(:user)
+        user.secret = "aabbcc"
+        user.save
+        post :create, user_id: user.id, secret_token: "aabbcc"
+        expect(flash[:success]).to be_present
+      end
+
+    end
+
+    context 'with valid user and incorrect token' do
+
+      it 'should not erase any user'
+
+      it 'sets a flash[:success] message'
+
+    end
 
   end
 

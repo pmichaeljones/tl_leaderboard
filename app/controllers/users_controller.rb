@@ -14,11 +14,12 @@ class UsersController < ApplicationController
   end
 
   def delete_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
+    #binding.pry
   end
 
   def destroy_user
-    binding.pry
+    #binding.pry
   end
 
 
