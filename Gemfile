@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rspec-rails', '2.99'
   gem 'pry', '0.9.10'
   gem 'pry-nav'
+  gem 'letter_opener'
 end
 
 group :test do

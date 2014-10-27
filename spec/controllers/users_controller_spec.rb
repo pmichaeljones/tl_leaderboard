@@ -37,6 +37,19 @@ describe UsersController do
 
   describe "POST create" do
 
+    context 'sending emails' do
+
+      after { ActionMailer::Base.deliveries.clear }
+
+      it 'sends an email to the user with their delete user secret' do
+        post :create, user: Fabricate.attributes_for(:user)
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
+      end
+
+
+    end
+
+
     context 'with invalid inputs' do
 
       it 'renders the index template' do
