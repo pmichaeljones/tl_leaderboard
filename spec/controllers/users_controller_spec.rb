@@ -41,12 +41,12 @@ describe UsersController do
         expect(flash[:success]).to be_present
       end
 
-      it 'renders delete_user template' do
+      it 'redirect to root path' do
         user = Fabricate(:user)
         user.secret = "aabbcc"
         user.save
         post :destroy_user, user_id: user.id, secret_token: "aabbcc"
-        expect(response).to render_template :delete_user
+        expect(response).to redirect_to root_path
       end
 
     end
@@ -108,13 +108,10 @@ describe UsersController do
 
     context 'sending emails' do
 
-      after { ActionMailer::Base.deliveries.clear }
-
       it 'sends an email to the user with their delete user secret' do
         post :create, user: Fabricate.attributes_for(:user)
         expect(ActionMailer::Base.deliveries.count).to eq(1)
       end
-
 
     end
 
