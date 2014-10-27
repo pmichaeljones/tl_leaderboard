@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user.secret == params[:secret_token]
       @user.delete
       flash[:success] = "#{@user.github_username} deleted from leaderboard"
-      render :delete_user
+      redirect_to root_path
     else
       flash[:error] = "That is not the correct secret code for #{@user.github_username}"
       render :delete_user

@@ -1,6 +1,10 @@
 .section
   .row
     .small-12.columns
+    %hr
+      = render 'shared/messages'
+  .row
+    .small-12.columns
       =form_tag("/destroy_user", method: :post) do
         %fieldset
           %legend Leaderboard Erase Form

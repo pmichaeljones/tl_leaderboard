@@ -361,6 +361,14 @@ div#flash_info {
   font-size: 16px;
 }
 
+div#flash_success {
+  font-size: 16px;
+}
+
+div#flash_error {
+  font-size: 16px;
+}
+
 .down-a-bit {
   margin-top: 20px;
 }
@@ -372,4 +380,13 @@ div#flash_info {
   padding: 5px 10px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.white-logo {
+  color: white;
+  font-size: 30px;
+}
+.white-logo:hover {
+  color: white;
+  font-size: 30px;
 }

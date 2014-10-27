@@ -1,11 +1,11 @@
 .contain-to-grid
-  .row.show-for-medium-down.bottom-border
+  .row.show-for-medium-down.bottom-border.centered
     .small-12.columns
       %span.logo-last-word
-        Tealeaf Leaderboard
+        =link_to "Tealeaf Leaderboard", root_path, class: 'white-logo'
   %nav.top-bar.collapse.show-for-large-up.centered(role="navigation")
     %ul.title-area
       %li.name
         =link_to "" do
           %span.logo-last-word
-            Tealeaf Academy Student Coding Leaderboard
+            =link_to "Tealeaf Academy Student Coding Leaderboard", root_path, class: 'white-logo'
