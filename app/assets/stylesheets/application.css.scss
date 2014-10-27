@@ -364,3 +364,12 @@ div#flash_info {
 .down-a-bit {
   margin-top: 20px;
 }
+
+.erase-user-button {
+  background: orange;
+  border: none;
+  border-radius: 10%;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
