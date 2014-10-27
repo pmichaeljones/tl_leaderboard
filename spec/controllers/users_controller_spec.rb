@@ -15,7 +15,7 @@ describe UsersController do
 
     it 'renders the delete user template' do
       user = Fabricate(:user)
-      get :delete_user, id: user.id
+      post :delete_user, user_id: user.id
       expect(response).to render_template :delete_user
     end
 
@@ -29,27 +29,45 @@ describe UsersController do
         user = Fabricate(:user)
         user.secret = "aabbcc"
         user.save
-        binding.pry
-        post :create, user_id: user.id, secret_token: "aabbcc"
+        post :destroy_user, user_id: user.id, secret_token: "aabbcc"
         expect(User.all.count).to eq(0)
       end
-
 
       it 'sets a flash[:success] message' do
         user = Fabricate(:user)
         user.secret = "aabbcc"
         user.save
-        post :create, user_id: user.id, secret_token: "aabbcc"
+        post :destroy_user, user_id: user.id, secret_token: "aabbcc"
         expect(flash[:success]).to be_present
+      end
+
+      it 'renders delete_user template' do
+        user = Fabricate(:user)
+        user.secret = "aabbcc"
+        user.save
+        post :destroy_user, user_id: user.id, secret_token: "aabbcc"
+        expect(response).to render_template :delete_user
       end
 
     end
 
     context 'with valid user and incorrect token' do
 
-      it 'should not erase any user'
+      it 'should not erase any user' do
+        user = Fabricate(:user)
+        user.secret = "aabbcc"
+        user.save
+        post :destroy_user, user_id: user.id, secret_token: "wrongtoken"
+        expect(User.all.count).to eq(1)
+      end
 
-      it 'sets a flash[:success] message'
+      it 'sets a flash[:error] message' do
+        user = Fabricate(:user)
+        user.secret = "aabbcc"
+        user.save
+        post :destroy_user, user_id: user.id, secret_token: "wrongtoken"
+        expect(flash[:error]).to be_present
+      end
 
     end
 

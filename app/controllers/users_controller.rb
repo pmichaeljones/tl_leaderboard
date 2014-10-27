@@ -15,11 +15,21 @@ class UsersController < ApplicationController
 
   def delete_user
     @user = User.find(params[:user_id])
-    #binding.pry
   end
 
+
   def destroy_user
-    #binding.pry
+    @user = User.find(params[:user_id])
+
+    if @user.secret == params[:secret_token]
+      @user.delete
+      flash[:success] = "#{@user.github_username} deleted from leaderboard"
+      render :delete_user
+    else
+      flash[:error] = "That is not the correct secret code for #{@user.github_username}"
+      render :delete_user
+    end
+
   end
 
 
