@@ -15,6 +15,8 @@
               =hidden_field_tag :user_id, "#{@user.id}"
             .small-12.large-6.columns
               =submit_tag "Erase User from Leaderboard", class: 'button login-button down-a-bit'
+          .div.centered
+            =link_to "Forgot Token?", new_token_path
 
 
 

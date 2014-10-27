@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 
   end
 
-
   def create
     #binding.pry
     @user = User.new(user_params)
@@ -56,6 +55,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def new_token
+  end
+
+  def send_token
+    @user = User.find_by(github_username: params[:github_name])
+    if @user
+      AppMailer.send_secret_token(@user.id).deliver
+      flash[:success] = "We just sent an email to #{@user.email}."
+    else
+      flash[:success] = "Unable to find #{params[:github_name]} in our database."
+    end
+    render :new_token
+  end
 
   private
 

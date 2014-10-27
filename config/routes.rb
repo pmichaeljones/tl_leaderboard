@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   post 'delete_user', to: 'users#delete_user'
 
   post 'destroy_user', to: 'users#destroy_user'
+
+  get 'new_token', to: 'users#new_token'
+
+  post 'new_token', to: 'users#send_token'
 end
 
 

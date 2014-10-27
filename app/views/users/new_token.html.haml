@@ -1,0 +1,17 @@
+.section
+  .row
+    .small-12.columns
+    %hr
+      = render 'shared/messages'
+  .row
+    .small-12.columns
+      %p Enter GitHub Username. If we have that username in our database, we will send the secret token to their email on file.
+      =form_tag("/new_token", method: :post) do
+        %fieldset
+          %legend Get New Token Form
+          .row.centered
+            .small-12.large-6.columns
+              =label_tag "GitHub Username"
+              =text_field_tag :github_name, nil, class: 'radius'
+            .small-12.large-6.columns
+              =submit_tag "Get Password Token", class: 'button login-button down-a-bit'
