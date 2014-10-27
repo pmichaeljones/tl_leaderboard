@@ -21,6 +21,18 @@
 
 /* USER DASHBOARD STYLING */
 
+header { 
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+}
+
+section{
+  margin-top: 52px
+}
+
 .top-bar .title-area {
   float: none;
 }
