@@ -56,6 +56,24 @@ describe User do
       expect(user.secret).to be_kind_of(String)
     end
 
+    it 'shoudld sort from most contributions to least' do
+      patrick = Fabricate(:user)
+      mike = Fabricate(:user, github_username: 'mikey')
+      tim = Fabricate(:user, github_username: 'timmy')
+      john = Fabricate(:user, github_username: 'johnny')
+      patrick.contributions = 50
+      patrick.save
+      john.contributions = 500
+      john.save
+      mike.contributions = 30
+      mike.save
+      tim.contributions = 90
+      tim.save
+      expect(User.all).to eq([john, tim, patrick, mike])
+
+    end
+
+
 
   end
 

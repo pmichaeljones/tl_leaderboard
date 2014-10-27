@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email, :github_username
   validates_uniqueness_of :github_username
+  default_scope { order('contributions DESC')}
 
   require 'net/http'
 
@@ -21,11 +22,7 @@ class User < ActiveRecord::Base
   def github_user?
     uri = URI("https://github.com/#{self.github_username}/")
     response = Net::HTTP.get_response(uri)
-    if response.code == '404'
-      return false
-    else
-      return true
-    end
+    response.code == '404' ? false : true
   end
 
   def update_user_info
@@ -35,16 +32,21 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def self.update
+  def generate_delete_secret
+    self.secret = Faker::Internet.password
+  end
+
+  #class methods here down
+
+  def self.update_github_info_for_all
     users = User.all
     users.each do |user|
       user.update_user_info
     end
   end
 
-  def generate_delete_secret
-    self.secret = Faker::Internet.password
-  end
-
+  # def sort_users
+  #   @users = User.order(contributions: :desc)
+  # end
 
 end

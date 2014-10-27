@@ -1,20 +1,37 @@
 class UsersController < ApplicationController
 
-  require 'net/http'
-
   def index
-    sort_users
+    @users = User.all
+  end
+
+  def create
+    @user = User.new(user_params)
+    @users = User.all
+
+    if @user.github_user?
+      if @user.save
+        @user.update_user_info
+        AppMailer.send_secret_token(@user.id).deliver
+        flash[:success] = "Success! Your secret token is: #{@user.secret}"
+        redirect_to root_path
+      else
+        flash[:error] = "Must include name, GitHub username and email address."
+        render :index
+      end
+    else
+      flash[:error] = "That GitHub user doesn't exist"
+      render :index
+    end
   end
 
   def update_users
-    User.update
-    sort_users
+    User.update_github_info_for_all
+    @users = User.all
     flash[:info] = "Leaderboard Updated!"
     render :index
   end
 
   def delete_user
-    #binding.pry
     @user = User.find(params[:user_id])
   end
 
@@ -33,27 +50,7 @@ class UsersController < ApplicationController
 
   end
 
-  def create
-    #binding.pry
-    @user = User.new(user_params)
-    @users = User.all
-
-    if @user.github_user?
-      if @user.save
-        @user.update_user_info
-        AppMailer.send_secret_token(@user.id).deliver
-        #binding.pry
-        flash[:success] = "Success! Your secret token is: #{@user.secret}"
-        redirect_to root_path
-      else
-        flash[:error] = "Must include name, GitHub username and email address."
-        render :index
-      end
-    else
-      flash[:error] = "That GitHub user doesn't exist"
-      render :index
-    end
-  end
+  #actions to resend the user secret token
 
   def new_token
   end
@@ -69,11 +66,13 @@ class UsersController < ApplicationController
     render :new_token
   end
 
+  #end secret token methods
+
   private
 
-  def sort_users
-    @users = User.order(contributions: :desc)
-  end
+  # def sort_users
+  #   @users = User.order(contributions: :desc)
+  # end
 
   def user_params
     params.require(:user).permit(:name, :github_username, :email)
