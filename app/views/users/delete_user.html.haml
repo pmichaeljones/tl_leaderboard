@@ -1,0 +1,25 @@
+.section
+  .row
+    .small-12.columns
+      =form_tag("/destroy_user", method: :post) do
+        %fieldset
+          %legend Leaderboard Erase Form
+          .row.centered
+            .small-12.large-6.columns
+              =label_tag "Please Enter User Secret Token for user: #{@user.name}"
+              =text_field_tag :secret_token, nil, class: 'radius'
+              =hidden_field_tag :user_id, "{@user.id}"
+            .small-12.large-6.columns
+              =submit_tag "Erase User from Leaderboard", class: 'button login-button down-a-bit'
+
+
+
+
+  /    =form_tag #controller: 'users', action: 'destroy_user' method: :post do |f|
+  /       %fieldset
+  /         %legend Leaderboard Erase Form
+  /         .row
+  /           .small-12.large-3.column
+  /             = label_tag "Please enter secret password for user"
+  /             = text_field_tag
+  /       = submit_tag "Erase User from Leaderboard", class: 'login-button'

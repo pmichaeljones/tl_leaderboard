@@ -13,6 +13,14 @@ class UsersController < ApplicationController
     render :index
   end
 
+  def delete_user
+    @user = User.find(params[:id])
+  end
+
+  def destroy_user
+    binding.pry
+  end
+
 
   def create
     #binding.pry

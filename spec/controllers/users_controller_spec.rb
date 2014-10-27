@@ -5,18 +5,24 @@ describe UsersController do
   let(:patrick) { Fabricate(:user) }
   let(:mike) { Fabricate(:user, github_username: "mikey") }
 
-  describe 'GET delete_user' do
+  describe 'POST delete_user' do
 
-    it 'renders the correct username' do
+    it 'sets @user variable' do
       user = Fabricate(:user)
       get :delete_user, id: user.id
-      expect(response).to render_template :index
+      expect(assigns(:user)).to eq(user)
+    end
+
+    it 'renders the delete user template' do
+      user = Fabricate(:user)
+      get :delete_user, id: user.id
+      expect(response).to render_template :delete_user
     end
 
   end
 
 
-  describe 'POST delete_user' do
+  describe 'POST destroy_user' do
 
     it 'should should erase the user if input secret matches user secret'
 
