@@ -63,7 +63,7 @@
             %th GitHub Username
             %th Yearly Contributions
             %th Current Streak
-            /%th.centered Delete
+            %th.centered Delete
         %tbody
           -@users.each_with_index do |user, index|
             %tr
@@ -72,7 +72,7 @@
               %td=link_to "#{user.github_username}", "https://github.com/#{user.github_username}"
               %td #{user.contributions} Commits
               %td #{user.streak} Days
-              /%td.centered
-              /  =form_tag("/delete_user", method: :post)
-              /  =hidden_field_tag :user_id, user.id
-              /  =submit_tag "X", class: 'erase-user-button'
+              %td.centered
+                =form_tag("/delete_user", method: :post) do
+                  =hidden_field_tag :user_id, user.id
+                  =submit_tag "X", class: 'erase-user-button'

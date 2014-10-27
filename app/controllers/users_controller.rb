@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def delete_user
+    #binding.pry
     @user = User.find(params[:user_id])
   end
 
