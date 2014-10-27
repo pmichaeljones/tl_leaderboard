@@ -45,8 +45,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def sort_users
-  #   @users = User.order(contributions: :desc)
-  # end
-
 end

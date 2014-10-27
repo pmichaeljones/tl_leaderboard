@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       AppMailer.send_secret_token(@user.id).deliver
       flash[:success] = "We just sent an email to #{@user.email}."
     else
-      flash[:success] = "Unable to find #{params[:github_name]} in our database."
+      flash[:error] = "Unable to find #{params[:github_name]} in our database."
     end
     render :new_token
   end
@@ -69,10 +69,6 @@ class UsersController < ApplicationController
   #end secret token methods
 
   private
-
-  # def sort_users
-  #   @users = User.order(contributions: :desc)
-  # end
 
   def user_params
     params.require(:user).permit(:name, :github_username, :email)

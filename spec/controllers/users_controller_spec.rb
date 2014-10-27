@@ -5,6 +5,52 @@ describe UsersController do
   let(:patrick) { Fabricate(:user) }
   let(:mike) { Fabricate(:user, github_username: "mikey") }
 
+  describe 'POST send_token' do
+
+    context 'if github user exists in our database' do
+
+      after { ActionMailer::Base.deliveries.clear }
+
+      it 'should flash success message' do
+        patrick = Fabricate(:user)
+        post :send_token, github_name: patrick.github_username
+        expect(flash[:success]).to be_present
+      end
+
+
+      it 'should send an email to the github user on file' do
+        patrick = Fabricate(:user)
+        post :send_token, github_name: patrick.github_username
+        expect(ActionMailer::Base.deliveries.last.to).to eq([patrick.email])
+      end
+
+
+      it 'should render new token template' do
+        patrick = Fabricate(:user)
+        post :send_token, github_name: patrick.github_username
+        expect(response).to render_template :new_token
+      end
+
+    end
+
+    context 'if github user does not exist in our db' do
+
+      it 'should render flash error message' do
+        patrick = Fabricate(:user)
+        post :send_token, github_name: "wallymdjefferson"
+        expect(flash[:error]).to be_present
+      end
+
+      it 'should render the new_token template' do
+        patrick = Fabricate(:user)
+        post :send_token, github_name: "wallymdjefferson"
+        expect(response).to render_template :new_token
+      end
+
+    end
+
+  end
+
   describe 'POST delete_user' do
 
     it 'sets @user variable' do
@@ -107,6 +153,8 @@ describe UsersController do
   describe "POST create" do
 
     context 'sending emails' do
+
+      after { ActionMailer::Base.deliveries.clear }
 
       it 'sends an email to the user with their delete user secret' do
         post :create, user: Fabricate.attributes_for(:user)
