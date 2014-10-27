@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def generate_delete_secret
-    self.secret = Faker::Lorem.word
+    self.secret = Faker::Internet.password
   end
 
 
