@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   def update_user_info
     self.contributions = github_contributions
     self.streak = github_streak
+    self.secret = generate_delete_secret
     self.save
   end
 
@@ -40,5 +41,10 @@ class User < ActiveRecord::Base
       user.update_user_info
     end
   end
+
+  def generate_delete_secret
+    self.secret = Faker::Lorem.word
+  end
+
 
 end
