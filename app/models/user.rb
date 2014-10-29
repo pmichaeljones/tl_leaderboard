@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :github_username
   default_scope { order('contributions DESC')}
 
+  before_create :send_email
+
   require 'net/http'
 
   def github_contributions
@@ -44,5 +46,12 @@ class User < ActiveRecord::Base
       user.update_user_info
     end
   end
+
+  private
+
+  def email_admin
+    AppMailer.send_admin_email(self.id).deliver
+  end
+
 
 end
