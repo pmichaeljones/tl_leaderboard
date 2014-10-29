@@ -7,6 +7,19 @@ describe User do
   it { should validate_presence_of :github_username }
   it { should validate_uniqueness_of :github_username }
 
+  describe '#email_admin' do
+
+    after { ActionMailer::Base.deliveries.clear }
+
+    it 'emails the admin' do
+      user = Fabricate(:user)
+      user.save
+      expect(ActionMailer::Base.deliveries.last.to).to eq(["pmichaeljones@gmail.com"])
+    end
+
+  end
+
+
   describe '#generate_delete_secret' do
 
     it 'generates a 1 work secret for removing name from leaderboard' do

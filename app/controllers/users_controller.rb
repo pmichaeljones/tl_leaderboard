@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       if @user.save
         @user.update_user_info
         AppMailer.send_secret_token(@user.id).deliver
-        AppMailer.send_admin_email(@user.id).deliver
         flash[:success] = "Success! Your secret token is: #{@user.secret}"
         redirect_to root_path
       else

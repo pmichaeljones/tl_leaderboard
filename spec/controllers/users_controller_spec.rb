@@ -158,12 +158,7 @@ describe UsersController do
 
       it 'sends an email to the user with their delete user secret' do
         post :create, user: Fabricate.attributes_for(:user)
-        expect(ActionMailer::Base.deliveries.count).to eq(2)
-      end
-
-      it 'sends a notification email to admin' do
-        post :create, user: Fabricate.attributes_for(:user)
-        expect(ActionMailer::Base.deliveries.last.to).to eq(["pmichaeljones@gmail.com"])
+        expect(ActionMailer::Base.deliveries.count).to eq(1)
       end
 
     end
