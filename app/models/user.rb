@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :github_username
   default_scope { order('contributions DESC')}
 
-  after_save :email_admin
+  after_create :email_admin
 
   require 'net/http'
 
