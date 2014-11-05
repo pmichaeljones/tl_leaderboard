@@ -1,28 +1,6 @@
-== README
+== README for TeaLeaf Leaderboard App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an online leaderboard for the TeaLeaf Academy to keep track of their student progress. This repo is branded with TeaLeaf info, but there is a whitelabel open-source repo for companies looking to implement their own coding leaderboard:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Open Source GitHub Coding Leaderboard Tool
+https://github.com/pmichaeljones/github_leaderboard
